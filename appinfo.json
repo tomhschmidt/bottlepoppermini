@@ -1,0 +1,21 @@
+{
+    "uuid": "7e4e1a2d-3676-47a8-9fca-7d64518ff5b4",
+    "resources": {
+        "media": []
+    },
+    "capabilities": [
+        ""
+    ],
+    "companyName": "schmidt.9090@gmail.com",
+    "shortName": "BottlePopperMini",
+    "longName": "BottlePopperMini",
+    "watchapp": {
+        "watchface": false
+    },
+    "versionCode": 1,
+    "appKeys": {
+        "status": 0,
+        "message": 1
+    },
+    "versionLabel": "1.0"
+}
