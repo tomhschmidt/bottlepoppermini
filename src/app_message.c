@@ -1,6 +1,7 @@
 #include <pebble.h>
 
 Window *window;	
+static TextLayer *left_layer;
 	
 // Key values for AppMessage Dictionary
 enum {
@@ -20,6 +21,17 @@ void send_message(void){
   	app_message_outbox_send();
 }
 
+void writeMessage(char *message) {
+  Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_frame(window_layer);
+
+  left_layer = text_layer_create(GRect(10, 10, bounds.size.w /* width */, 150 /* height */));
+  text_layer_set_text(left_layer, message);
+  text_layer_set_font(left_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  text_layer_set_text_alignment(left_layer, GTextAlignmentLeft);
+  layer_add_child(window_layer, text_layer_get_layer(left_layer)); 
+}
+
 // Called when a message is received from PebbleKitJS
 static void in_received_handler(DictionaryIterator *received, void *context) {
 	Tuple *tuple;
@@ -30,10 +42,20 @@ static void in_received_handler(DictionaryIterator *received, void *context) {
 	}
 	
 	tuple = dict_find(received, MESSAGE_KEY);
-	if(tuple) {
+  if(tuple) {
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "Received Message: %s", tuple->value->cstring);
-    vibes_long_pulse();
-	}}
+    char *message = tuple->value->cstring;
+    if (message[0] == '1') {
+      message++;
+      writeMessage(message);
+      vibes_short_pulse();
+    } else if (message[0] == '2') {
+      message++;
+      writeMessage(message);
+      vibes_long_pulse();
+    }
+	} 
+}
 
 // Called when an incoming message from PebbleKitJS is dropped
 static void in_dropped_handler(AppMessageResult reason, void *context) {	
@@ -46,7 +68,7 @@ static void out_failed_handler(DictionaryIterator *failed, AppMessageResult reas
 void init(void) {
 	window = window_create();
 	window_stack_push(window, true);
-	
+  
 	// Register AppMessage handlers
 	app_message_register_inbox_received(in_received_handler); 
 	app_message_register_inbox_dropped(in_dropped_handler); 
