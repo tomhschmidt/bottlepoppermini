@@ -1,21 +1,27 @@
 {
-    "uuid": "7e4e1a2d-3676-47a8-9fca-7d64518ff5b4",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "images/icon_4317.png",
+                "type": "png",
+                "name": "IMAGE_LOGO"
+            }
+        ]
     },
     "capabilities": [
         ""
     ],
-    "companyName": "schmidt.9090@gmail.com",
+    "uuid": "7e4e1a2d-3676-47a8-9fca-7d64518ff5b4",
     "shortName": "BottlePopperMini",
+    "versionCode": 1,
+    "companyName": "schmidt.9090@gmail.com",
+    "appKeys": {
+        "message": 1,
+        "status": 0
+    },
     "longName": "BottlePopperMini",
+    "versionLabel": "1.0",
     "watchapp": {
         "watchface": false
-    },
-    "versionCode": 1,
-    "appKeys": {
-        "status": 0,
-        "message": 1
-    },
-    "versionLabel": "1.0"
+    }
 }

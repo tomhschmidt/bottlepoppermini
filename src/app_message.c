@@ -2,6 +2,8 @@
 
 Window *window;	
 static TextLayer *left_layer;
+static BitmapLayer *logo_layer;
+static GBitmap *logo;
 	
 // Key values for AppMessage Dictionary
 enum {
@@ -19,6 +21,16 @@ void send_message(void){
 
 	dict_write_end(iter);
   	app_message_outbox_send();
+}
+
+void drawLogo()
+{
+  Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_frame(window_layer);
+  
+  logo_layer = bitmap_layer_create(GRect(30,30,bounds.size.w, 100));
+  logo = gbitmap_create_with_resource(IMAGE_LOGO);
+  bitmap_layer_set_bitmap(logo_layer, logo);
 }
 
 void writeMessage(char *message) {
@@ -44,7 +56,11 @@ static void in_received_handler(DictionaryIterator *received, void *context) {
 	tuple = dict_find(received, MESSAGE_KEY);
   if(tuple) {
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "Received Message: %s", tuple->value->cstring);
-    char *message = tuple->value->cstring;
+    //char *message = tuple->value->cstring;
+    char *message = "Hello";
+    writeMessage(message);
+    drawLogo();
+    
     if (message[0] == '1') {
       message++;
       writeMessage(message);
