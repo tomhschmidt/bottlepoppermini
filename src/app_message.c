@@ -58,7 +58,7 @@ static void in_received_handler(DictionaryIterator *received, void *context) {
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "Received Message: %s", tuple->value->cstring);
     char *message = tuple->value->cstring;
     //char *message = "Hello";
-    writeMessage(message);
+    //writeMessage(message);
     //drawLogo();
     
     if (message[0] == '1') {
@@ -69,6 +69,13 @@ static void in_received_handler(DictionaryIterator *received, void *context) {
       message++;
       writeMessage(message);
       vibes_long_pulse();
+    } else if (message[0] == '3') {
+      message++;
+      writeMessage(message);
+      vibes_double_pulse();
+    } else if (message[0] == '4') {
+      message++;
+      writeMessage(message);
     }
 	} 
 }
