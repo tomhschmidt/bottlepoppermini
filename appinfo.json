@@ -1,27 +1,32 @@
 {
-    "shortName": "BottlePopperMini",
-    "longName": "BottlePopperMini",
-    "capabilities": [
-        ""
-    ],
     "watchapp": {
         "watchface": false
     },
-    "versionLabel": "1.0",
-    "appKeys": {
-        "message": 1,
-        "status": 0
-    },
+    "longName": "BottlePopperMini",
+    "shortName": "BottlePopperMini",
     "companyName": "schmidt.9090@gmail.com",
-    "versionCode": 1,
-    "uuid": "7e4e1a2d-3676-47a8-9fca-7d64518ff5b4",
+    "capabilities": [
+        ""
+    ],
     "resources": {
         "media": [
             {
-                "name": "IMAGE_LOGO",
+                "file": "images/lock_filled-32.png",
                 "type": "png",
-                "file": "images/icon_4317.png"
+                "name": "IMAGE_LOCK"
+            },
+            {
+                "file": "images/icon_4317.png",
+                "type": "png",
+                "name": "IMAGE_LOGO"
             }
         ]
-    }
+    },
+    "uuid": "7e4e1a2d-3676-47a8-9fca-7d64518ff5b4",
+    "versionLabel": "1.0",
+    "appKeys": {
+        "status": 0,
+        "message": 1
+    },
+    "versionCode": 1
 }
